@@ -1,0 +1,25 @@
+import heapq 
+class Solution:
+    def spanningTree(self, V, edges):
+        # code here
+        adj = [] 
+        for _ in range(0,V):
+            adj.append([]) 
+        for u,v,wt in edges:
+            adj[u].append((v,wt)) 
+            adj[v].append((u,wt)) 
+        vis = [0]*V 
+        pq = [] 
+        Sum = 0 
+        heapq.heappush(pq,(0,0)) # wt,node 
+        while(len(pq)>0):
+            wt,node = heapq.heappop(pq) 
+            if(vis[node] == 1):
+                continue 
+            vis[node] = 1
+            Sum+=wt 
+            for adjNode,wt in adj[node]:
+                if(vis[adjNode] == 0):
+                    heapq.heappush(pq,(wt,adjNode)) 
+        return Sum       
+        
