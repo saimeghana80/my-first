@@ -1,0 +1,6 @@
+while(root is not None and root.val != val):
+            if(val > root.val):
+                root = root.right
+            elif(val < root.val):
+                root = root.left
+        return root
